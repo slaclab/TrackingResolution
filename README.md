@@ -1,2 +1,2 @@
 # TrackingResolution
-Code to measure track parameter uncertainties
+Code to measure the resolution on track parameters
