@@ -31,8 +31,8 @@ The units of output are:
 	
 About the input file: 
 The "-f" option allows you to read from the detector configuration from a txt file, but the file must be in certain format:
-
-        To comment out a line use "#"
+	
+	To comment out a line use "#"
 	
 	Each line is a layer configuration.
 	
@@ -50,7 +50,11 @@ An example of input file format can be found in example.txt.
 This is just a placeholder with material thickness set at 0, equally spaced layers and same detector resolution in the longitudinal and radial directions.
 
 To change parameters from command line:
+
 	-m M, --m M          mass of the particle in GeV/c^2 (default: muon mass)
+	
   	-B B, --B B          magnetic field in T (default: 2T)
+	
   	-eta ETA, --eta ETA  pseudorapidity (default: 0)
+	
   	-p P, --p P          momentum of the particle in GeV/c (default: 1 GeV)
