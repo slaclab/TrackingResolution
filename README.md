@@ -34,7 +34,7 @@ The units of output are:
 About the input file: 
 The "-f" option allows you to read from the detector configuration from a txt file, but the file must be in certain format:
 	
-	To comment out a line use "#"
+	To comment out a line use "#".
 	
 	Each line is a layer configuration.
 	
