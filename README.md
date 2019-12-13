@@ -1,3 +1,5 @@
+For any questions, please contact us: fengc@stanford.edu, vcairo@slac.stanford.edu, young@slac.stanford.edu
+
 The package is written in Python 3.6.8
 
 To run the package in terminal: 
