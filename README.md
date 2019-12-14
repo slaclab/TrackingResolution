@@ -38,13 +38,13 @@ The "-f" option allows you to read from the detector configuration from a txt fi
 	
 	Each line is a layer configuration.
 	
-	The first colomn is the layer width (unit: radiation length X0).
+	The first column is the layer width (unit: radiation length X0).
 	
-	The second colomn is the detector resoluton in xy plane (unit: meter).
+	The second column is the detector resoluton in xy plane (unit: meter).
 	
-	The third colomn is the detector resolution in z direction (unit: meter).
+	The third column is the detector resolution in z direction (unit: meter).
 	
-	The final colomn is the layer position in the radial direction with respect to the origin (unit: meter).
+	The final column is the layer position in the radial direction with respect to the origin (unit: meter).
 	
 	The order of the lines does not matter, but two layers with the same position must be avoided.
 
