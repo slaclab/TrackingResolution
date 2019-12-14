@@ -236,7 +236,7 @@ def inputfromfile(filename,verbose):
             print("#\tWidth\tResolutionxy\tResolutionz\tposition")
         lines=f.readlines()
         count=0
-        lines=[line for line in lines if line.split()[0][0]!='#' and len(line.split())==4]
+        lines=[line for line in lines if len(line.split())==4 and line.split()[0][0]!='#']
         for line in lines:
             try:
                 tempt=[float(num) for num in line.split()]
