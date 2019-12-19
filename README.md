@@ -2,6 +2,10 @@ For any questions, please contact us: fengc@stanford.edu, vcairo@slac.stanford.e
 
 The package is written in Python 3.6.8
 
+To run it in Jupyter Notebook: %run trackingerror.py
+
+For instructions of using the code in a notebook, see 'example.ipynb'.
+
 To run the package in terminal: 
 
 python3 trackaingerror.py [-h] [-f filename] [-p momentum] [-m mass] [-B MagneticField][-eta pseudorapidity][-verbose v]
@@ -10,11 +14,7 @@ e.g. in terminal run: python3 trackaingerror.py -f example.txt
 
 To see the help: python3 trackaingerror.py -h
 
-To run it in Jupyter Notebook: %run trackingerror.py
-
-Example of the usage in Jupyter Notebook: example.ipynb
-
-The supported layer configuration is cylinder, with origin set at its center. 
+The supported layer configuration is solenoidal geometry (i.e. cylinder layers), with origin set at its center. 
 xy plane denotes the transeverse plane. z-direction is in the direction of the cylinder axis.
 All layers are assumed to be infinite long along z-axis.
 Particle is assumed to be of unit charge e.
@@ -60,3 +60,5 @@ To change parameters from command line:
   	-eta ETA, --eta ETA  pseudorapidity (default: 0)
 	
   	-p P, --p P          momentum of the particle in GeV/c (default: 1 GeV)
+
+Caveat: at least three layers are needed for a reasonable output.
