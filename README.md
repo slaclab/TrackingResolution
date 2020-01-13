@@ -8,11 +8,11 @@ For instructions of using the code in a notebook, see 'example.ipynb'.
 
 To run the package in terminal: 
 
-python3 trackaingerror.py [-h] [-f filename] [-p momentum] [-m mass] [-B MagneticField][-eta pseudorapidity][-verbose v]
+python3 trackingerror.py [-h] [-f filename] [-p momentum] [-m mass] [-B MagneticField][-eta pseudorapidity][-verbose v]
 
-e.g. in terminal run: python3 trackaingerror.py -f example.txt
+e.g. in terminal run: python3 trackingerror.py -f example.txt
 
-To see the help: python3 trackaingerror.py -h
+To see the help: python3 trackingerror.py -h
 
 The supported layer configuration is solenoidal geometry (i.e. cylinder layers), with origin set at its center. 
 xy plane denotes the transeverse plane. z-direction is in the direction of the cylinder axis.
