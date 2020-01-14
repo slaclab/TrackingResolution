@@ -72,7 +72,7 @@ class Detector:
                         if i==j:
                                 Cyij+=self.layers[i].res_xy*self.layers[i].res_xy
                         for k in range(min([i,j])):
-                                Cyij+=self.layers[i].ms*self.layers[i].ms*(self.layerpositions[i]-self.layerpositions[k])*(self.layerpositions[j]-self.layerpositions[k])
+                                Cyij+=self.layers[k].ms*self.layers[k].ms*(self.layerpositions[i]-self.layerpositions[k])*(self.layerpositions[j]-self.layerpositions[k])
                         t2.append(Cyij)
                 t1.append(t2)
         return np.array(t1)
@@ -86,7 +86,7 @@ class Detector:
                         if i==j:
                                 Cyij+=self.layers[i].res_z*self.layers[i].res_z
                         for k in range(min([i,j])):
-                                Cyij+=self.layers[i].ms*self.layers[i].ms*(self.layerpositions[i]-self.layerpositions[k])*(self.layerpositions[j]-self.layerpositions[k])
+                                Cyij+=self.layers[k].ms*self.layers[k].ms*(self.layerpositions[i]-self.layerpositions[k])*(self.layerpositions[j]-self.layerpositions[k])
                         t2.append(Cyij)
                 t1.append(t2)
         return np.array(t1)
