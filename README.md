@@ -59,6 +59,6 @@ To change parameters from command line:
 	
   	-eta ETA, --eta ETA  pseudorapidity (default: 0)
 	
-  	-p P, --p P          momentum of the particle in GeV/c (default: 1 GeV)
+  	-p P, --p P          momentum of the particle in GeV/c (default: 1 GeV) (Note this is the total momentum)
 
 Caveat: at least three layers are needed for a reasonable output.
