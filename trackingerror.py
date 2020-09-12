@@ -281,6 +281,8 @@ def calculation():
         for quantity in error.keys():
             print(quantity+'=%.4g'%error[quantity])
         return 1
+    else:
+        print('No detector is selected.')
 
 def main():
     #print(Validation2().errorcalculation(1,2))
