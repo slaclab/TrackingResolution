@@ -93,48 +93,36 @@ class Detector:
 
     def covariancey_z_1(self):
         covy=self.covariancey_z()
-        if np.linalg.det(1.0e12*covy)==0:
-            raise ValueError("Matrix are not invertable")
-        return np.linalg.pinv(covy)
+        return np.linalg.inv(covy)
 
     def covariancey_xy_1(self):
         covy=self.covariancey_xy()
-        if np.linalg.det(1.0e12*covy)==0:
-            raise ValueError("Matrix are not invertable")
-        return np.linalg.pinv(covy)
+        return np.linalg.inv(covy)
     
     def error_z(self):
         def covariancea():
             t=np.dot(self.track(),self.covariancey_z_1())
             t=np.dot(t,self.track().transpose())
-            if np.linalg.det(t)==0:
-                raise ValueError("Matrix are not invertable")
-            t=np.linalg.pinv(t)
+            t=np.linalg.inv(t)
             return t       
         return covariancea()
 
     def error_xy(self):
         t=np.dot(self.track(),self.covariancey_xy_1())
         t=np.dot(t,self.track().transpose())
-        if np.linalg.det(t)==0:
-            raise ValueError("Matrix are not invertable")
-        t=np.linalg.pinv(t)
+        t=np.linalg.inv(t)
         return t       
     
     def error_linear_z(self):
         t=np.dot(self.track_linear(),self.covariancey_z_1())
         t=np.dot(t,self.track_linear().transpose())
-        if np.linalg.det(t)==0:
-            raise ValueError("Matrix are not invertable")
-        t=np.linalg.pinv(t)
+        t=np.linalg.inv(t)
         return t    
 
     def error_linear_xy(self):
         t=np.dot(self.track_linear(),self.covariancey_xy_1())
         t=np.dot(t,self.track_linear().transpose())
-        if np.linalg.det(t)==0:
-            raise ValueError("Matrix are not invertable")
-        t=np.linalg.pinv(t)
+        t=np.linalg.inv(t)
         return t    
     
     def errorcalculation(self,p,B,eta=0,m=0.106):
@@ -258,62 +246,46 @@ def inputfromfile(filename,verbose):
 def addparser():
     parser = argparse.ArgumentParser(description='Detector resolution calculation.\nWritten by Feng Chen')
     parser.add_argument('-f', '--foo',help='input file at F00')
-    parser.add_argument('-m', '--m',help='mass of the particle in GeV/c^2 (default: muon mass)')
-    parser.add_argument('-B', '--B',help='magnetic field in T (default: 2T)')
-    parser.add_argument('-eta', '--eta',help='pseudorapidity (default: 0)')
-    parser.add_argument('-p', '--p',help='momentum of the particle in GeV/c (default: 1 GeV)')
-    parser.add_argument('-verbose', '--verbose',help='set to 1 to print the input layer configuration (default: 0)')
+    parser.add_argument('-m', '--m',help='mass of the particle in GeV/c^2 (default: muon mass)',default=0.106)
+    parser.add_argument('-B', '--B',help='magnetic field in T (default: 2T)',default=2)
+    parser.add_argument('-eta', '--eta',help='pseudorapidity (default: 0)',default=0)
+    parser.add_argument('-p', '--p',help='momentum of the particle in GeV/c (default: 1 GeV)',default=1)
+    parser.add_argument('-verbose', '--verbose',help='set to 1 to print the input layer configuration (default: 0)',default=0)
     args = parser.parse_args() 
     return [inputfromfile(args.foo,args.verbose), args.p,args.B,args.eta,args.m]
 
 def calculation():
     detector,p,B,eta,m=addparser()
     if detector!=None:
-        if p==None:
-            p=1
-        else:
-            try:
-                p=float(p)
-            except:
-                print("Error: Cannot resolve -p %s. It must be a number!" %p)
-                return
-        if B==None:
-            B=2
-        else:
-            try:
-                B=float(B)
-            except:
-                print("Error: Cannot resolve -B %s. It must be a number!" %B)
-                return
-        if m!=None:
-            try:
-                m=float(m)
-            except:
-                print("Error: Cannot resolve -m %s. It must be a number!" %m)
-                return
-        else: m=0.106
-        if eta!=None:
-            try:
-                eta=float(eta)
-            except:
-                print("Error: Cannot resolve -eta %s. It must be a number!" %eta)
-                return
-        else:eta=0  
+        try:
+            p=float(p)
+        except:
+            print("Error: Cannot resolve -p %s. It must be a number!" %p)
+            return
+        try:
+            B=float(B)
+        except:
+            print("Error: Cannot resolve -B %s. It must be a number!" %B)
+            return
+        try:
+            m=float(m)
+        except:
+            print("Error: Cannot resolve -m %s. It must be a number!" %m)
+            return
+        try:
+            eta=float(eta)
+        except:
+            print("Error: Cannot resolve -eta %s. It must be a number!" %eta)
+            return
         error=detector.errorcalculation(p,B,eta,m)
         for quantity in error.keys():
             print(quantity+'=%.4g'%error[quantity])
         return 1
 
-
-
-
-
 def main():
     #print(Validation2().errorcalculation(1,2))
     print("load successfully")
     calculation()
-
-
 
 if __name__ =="__main__":
     main()
