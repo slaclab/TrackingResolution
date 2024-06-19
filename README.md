@@ -1,4 +1,4 @@
-For any questions, please contact us: fengc@stanford.edu, vcairo@slac.stanford.edu, young@slac.stanford.edu
+For any questions, please contact us: fengc@stanford.edu, valentina.maria.cairo@cern.ch, young@slac.stanford.edu
 
 The package is written in Python 3.6.8
 
