@@ -14,6 +14,8 @@ e.g. in terminal run: python3 trackingerror.py -f example.txt
 
 To see the help: python3 trackingerror.py -h
 
+If you would like to produce plots directly from command line, you can call the plot() function in main(), within trackingerror.py. "plot" is a function of the file input, the error variable (i.e. 'sigma(d)'), the B field (default B = 2T), eta (default eta = 0) and the mass of the particle (default muon). By default it is commented out and the resolution numbers are printed only for the parameters passed by command line. Instead, if plot() is called, the resolution of the indicated parameter will be shown as a function of pT. If multiple instances of "plot" are called, the results will be overlaid in a single plot. See examples directly in the code. 
+
 The supported layer configuration is solenoidal geometry (i.e. cylinder layers), with origin set at its center. 
 xy plane denotes the transeverse plane. z-direction is in the direction of the cylinder axis.
 All layers are assumed to be infinite long along z-axis.
@@ -48,8 +50,7 @@ The "-f" option allows you to read from the detector configuration from a txt fi
 	
 	The order of the lines does not matter, but two layers with the same position must be avoided.
 
-An example of input file format can be found in example.txt. 
-This is just a placeholder with material thickness set at 0, equally spaced layers and same detector resolution in the longitudinal and radial directions.
+An example of input file format can be found in example.txt. This is just a placeholder with material thickness set at 0, equally spaced layers and same detector resolution in the longitudinal and radial directions. Some other detector layout options are also provided in .txt.
 
 To change parameters from command line:
 

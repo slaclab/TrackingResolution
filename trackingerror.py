@@ -1,7 +1,7 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[2]:
 
 
 import numpy as np
@@ -251,7 +251,8 @@ def inputfromfile(filename,verbose):
     return userdetector
 
 def addparser():
-    parser = argparse.ArgumentParser(description='Detector resolution calculation.\nWritten by Feng Chen')
+    print("Calling parser")
+    parser = argparse.ArgumentParser(description='Detector resolution calculation.\n Originally written by Feng Chen')
     parser.add_argument('-f', '--foo',help='input file at F00')
     parser.add_argument('-m', '--m',help='mass of the particle in GeV/c^2 (default: muon mass)',default=0.106)
     parser.add_argument('-B', '--B',help='magnetic field in T (default: 2T)',default=2)
@@ -262,7 +263,7 @@ def addparser():
     return [inputfromfile(args.foo,args.verbose), args.p,args.B,args.eta,args.m]
 
 def calculation():
-    detector,p,B,eta,m=addparser()
+    detector,p,B,eta,m=addparser()    
     if detector!=None:
         try:
             p=float(p)
@@ -289,29 +290,49 @@ def calculation():
             print(quantity+'=%.4g'%error[quantity])
         return 1
     else:
-        print('No detector is selected.')
+        print('No detector is selected...')
+        
 
-def main():
-    #print(Validation2().errorcalculation(1,2))
-    print("load successfully")
-    calculation()
+# "plot" is a function of the file input, the error variable (i.e. 'sigma(d)'), the B field (default B = 2T), eta (default eta = 0) and the mass of the particle (default muon).
+# An example of how to call this function is shown below in main(). By default it is commented out and the resolution numbers are printed out for the parameters passed by command line. Instead, if plot is called the resolution of the indicated parameter will be shown as a function of pT. If multiple instances of "plot" are called, the results will be overlaid in a single plot.
 
-if __name__ =="__main__":
-    main()
-
-    
- 
-# Plot is a function of the file input, the error variable (i.e. 'sigma(d)'), and the B field (default = 2T).
-
-def plot(filename,var,B=2,eta=0,m=0.106):
+def plot(filename,var,B=2,eta=0,m=0.106,unit=''):
     mydetector = inputfromfile(filename,1)
     p = np.logspace(-0.1,2.1)
     y = []
     for i in range(len(p)):
         y.append(mydetector.errorcalculation(p[i],B,eta,m)[var])
-    print(y[0])
+    print("Resolution in the first pt bin", y[0])
     plt.xscale('log')
-    plt.plot(p,y,label="Calculation")
-    plt.legend
+    LegLabel=filename+', eta='+str(eta)+', mass='+str(m)
+    plt.plot(p,y,label=LegLabel)
+    plt.legend()
+    ylabel=var
+    if var == 'sigma(d)' or var == 'sigma(z)' :
+        ylabel = ylabel+'[$\mu m$]'
+    elif var == 'sigma(phi)' or var == 'sigma(theta)' :
+        ylabel = ylabel+'[radians]'
+    plt.ylabel(ylabel)
+    plt.xlabel('pT [GeV]')
     return mydetector
+
+
+def main():
+    #print(Validation2().errorcalculation(1,2))
+    print("load successfully")
+    calculation()
+    #This plots the resolution on the transverse impact parameter for the CMS HL-LHC tracker configuration and a muon mass hypothesis. Please note that only the barrel layers are included.
+    #plot("CMS.txt",'sigma(d)',B=4,eta=0.,m=0.106)
+    #This plots the resolution on the transverse impact parameter for the ATLAS HL-LHC tracker configuration and a muon mass hypothesis. Please note that only the barrel layers are included.
+    #plot("ATLAS.txt",'sigma(d)',B=2,eta=0.,m=0.106)
+    plt.show()
+   
+if __name__ =="__main__":
+    main()
+
+
+# In[ ]:
+
+
+
 
